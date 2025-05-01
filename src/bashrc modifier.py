@@ -5,12 +5,9 @@ from tkinter import messagebox
 def run_pipeline():
        
     try:
-        # Run wslpath -w ~/.bashrc to get the Windows path of .bashrc
-        bashrc_path = subprocess.check_output(["wsl", "wslpath", "-w", "~/.bashrc"], creationflags=subprocess.CREATE_NO_WINDOW).decode("utf-8").strip()
-
-        # Now open it with Sublime Text
-        command = f"subl.exe {bashrc_path}"
-        subprocess.run(command, shell=True, creationflags=subprocess.CREATE_NO_WINDOW)
+        # Open .bashrc with Sublime Text
+        command = f"subl ~/.bashrc"
+        subprocess.run(["bash", "-c", command], check=True)
 
     # Error hadling
     except subprocess.CalledProcessError as e:
